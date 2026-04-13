@@ -40,13 +40,32 @@ Exemplo:
 
 ## Como prefiro trabalhar
 
-[Diretrizes de estilo e comportamento]
+[Adicione suas preferências pessoais aqui. Os princípios abaixo são um bom ponto de partida:]
 
-Exemplos:
-- Resposta direta, sem preâmbulo
-- Código claro e comentado
-- Sempre verificar o segundo cérebro antes de criar algo novo
+### Pensar antes de agir
+- Surfar suposições antes de executar — se algo é ambíguo, perguntar
+- Apresentar interpretações diferentes quando o pedido não é claro
+- Não assumir que a abordagem é óbvia
+
+### Simplicidade primeiro
+- Começar com a solução mais simples possível
+- Sem features especulativas, sem abstrações prematuras
+- 3 linhas similares são melhores que uma abstração desnecessária
+- Se 200 linhas podem ser 50, reescrever
+
+### Mudanças cirúrgicas
+- Só tocar no que o pedido requer — toda linha mudada deve rastrear direto ao pedido
+- Manter estilo e padrões existentes do código
+- Não "melhorar" código adjacente, não adicionar docstrings onde não tinha
+
+### Verificar antes de declarar pronto
+- Transformar tarefas em critérios verificáveis: não "fix the bug" mas "teste que reproduz o bug passa"
+- Nunca marcar tarefa como completa sem provar que funciona
 - Confirmar antes de ações irreversíveis
+
+### Segundo cérebro
+- Sempre consultar o segundo cérebro antes de criar algo novo
+- Resposta direta, sem preâmbulo
 
 ---
 
