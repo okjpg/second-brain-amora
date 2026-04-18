@@ -218,7 +218,8 @@ fi
 
 # Pendências resolvidas acumuladas
 if [ -f "$BRAIN/memory/context/pendencias.md" ]; then
-  RESOLVED=$(awk '/^## ✅ Resolvidas/,0' "$BRAIN/memory/context/pendencias.md" | grep -c "^- " || echo 0)
+  RESOLVED=$(awk '/^## ✅ Resolvidas/,0' "$BRAIN/memory/context/pendencias.md" | grep -c "^- ")
+  RESOLVED=${RESOLVED:-0}
   [ "$RESOLVED" -gt 20 ] && echo "🟡 $RESOLVED pendências resolvidas acumuladas — arquivar histórico"
 fi
 
@@ -246,7 +247,18 @@ echo "=== CAMADA 6 — SKILLS ==="
 # Skills do brain
 SKILLS_DIR="$BRAIN/skills"
 if [ -d "$SKILLS_DIR" ]; then
-  find "$SKILLS_DIR" -name "SKILL.md" | while read skill; do
+  SKILL_FILES=$(find "$SKILLS_DIR" -name "SKILL.md" 2>/dev/null)
+  REGISTRY_EXISTS=false
+  [ -f "$SKILLS_DIR/_registry.md" ] && REGISTRY_EXISTS=true
+  if [ -z "$SKILL_FILES" ]; then
+    if [ "$REGISTRY_EXISTS" = true ]; then
+      echo "🟡 skills/_registry.md existe mas nenhum SKILL.md encontrado — registry órfão"
+    else
+      echo "ℹ️  Nenhuma skill própria no brain"
+    fi
+  fi
+  echo "$SKILL_FILES" | while read skill; do
+    [ -z "$skill" ] && continue
     # Referências a paths $SECOND_BRAIN_PATH/... que não existem
     refs=$(grep -oE '\$SECOND_BRAIN_PATH/[a-zA-Z0-9/_-]+\.md' "$skill" | sort -u)
     for ref in $refs; do
