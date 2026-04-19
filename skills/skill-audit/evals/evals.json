@@ -1,0 +1,15 @@
+{
+  "skill_name": "skill-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "roda skill-audit em ./my-skill/SKILL.md",
+      "expected_output": "Audit executa, parseia frontmatter, roda 10 checks, imprime score + issues no terminal e grava ./audit-results.md com report detalhado. Exit code 0."
+    },
+    {
+      "id": 2,
+      "prompt": "skill-audit ~/skills-folder-vazia/",
+      "expected_output": "Imprime 'Nenhum SKILL.md encontrado em ~/skills-folder-vazia/' e sai com exit code 0 sem gerar report."
+    }
+  ]
+}

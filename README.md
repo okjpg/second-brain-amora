@@ -17,8 +17,11 @@ Esse sistema resolve isso com três skills:
 | `/cerebro` | Início de sessão | Carrega todo o contexto (pendências, projetos, decisões recentes, últimas sessões) |
 | `/rotina` | Manhã | Cockpit do dia: emails, agenda, tarefas, métricas — tudo em uma tela |
 | `/salve` | Fim de sessão | Flush: salva decisões, pendências, projetos, cria log, faz commit/push |
+| `/skill-audit` | Antes de publicar skill | Audita `SKILL.md` contra 10 QA checks — garante que dispara em Claude, GPT, Gemini |
 
 **O loop:** `/cerebro` → trabalha → `/salve` → amanhã `/cerebro` já sabe tudo que aconteceu.
+
+Bonus: [`skill-audit`](skills/skill-audit/) valida qualquer skill sua contra o padrão V3 (útil pra quem migrou de Claude pre-4.5). Standalone também em [`okjpg/skill-audit`](https://github.com/okjpg/skill-audit).
 
 ---
 
