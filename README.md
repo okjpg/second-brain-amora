@@ -1,6 +1,10 @@
 # Segundo Cérebro para Claude Code
 ### Sistema /cerebro + /rotina + /salve
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Made with Claude](https://img.shields.io/badge/made%20with-Claude%20Code-FE5000)](https://claude.ai/download)
+[![Landing](https://img.shields.io/badge/cerebro-microsaas.com.br-101C7E)](https://cerebro.microsaas.com.br)
+
 > Um repositório (ou pasta local) que funciona como memória persistente do Claude Code.  
 > Três skills que transformam qualquer sessão em trabalho acumulativo.
 

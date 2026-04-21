@@ -1,0 +1,19 @@
+# Dependabot config — second-brain-amora
+# Repo é majoritariamente shell/markdown, mas GitHub Actions aparecerem no futuro ficam cobertos.
+
+version: 2
+updates:
+  # Verifica updates em GitHub Actions workflows (se houver)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Sao_Paulo"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    labels:
+      - "dependencies"
+      - "automated"
