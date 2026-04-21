@@ -124,7 +124,7 @@ git clone https://github.com/okjpg/second-brain-amora.git
 cd second-brain-amora
 
 # Copia templates pro segundo cérebro
-cp -r templates/* ~/segundo-cerebro/
+cp -rn templates/* ~/segundo-cerebro/
 ```
 
 **Windows (PowerShell):**
@@ -132,6 +132,7 @@ cp -r templates/* ~/segundo-cerebro/
 cd $HOME
 git clone https://github.com/okjpg/second-brain-amora.git
 cd second-brain-amora
+# -Force NÃO usado de propósito pra não sobrescrever arquivos existentes
 Copy-Item -Recurse templates\* "$HOME\segundo-cerebro\"
 ```
 
@@ -243,6 +244,8 @@ Na primeira vez, ele vai:
 2. Listar o que está faltando
 3. Perguntar se quer criar os arquivos ausentes
 4. Configurar o hook de boot automático (opcional)
+
+> **Esperando pouco:** o primeiro briefing vai ser quase vazio — você ainda não alimentou o cérebro. Normal. Rode `/salve` no fim de algumas sessões de trabalho e o próximo `/cerebro` já vai ficando denso. O valor aparece na segunda semana, não no primeiro dia.
 
 ---
 
@@ -396,6 +399,9 @@ R: Edite `~/.claude/skills/rotina/SKILL.md` e substitua `America/Sao_Paulo` pelo
 
 **P: Posso ter mais de um segundo cérebro?**  
 R: Sim. Mude `SECOND_BRAIN_PATH` para outra pasta. Útil para separar contextos (trabalho / pessoal).
+
+**P: Já uso OpenClaw. Como esse kit integra com o meu workspace?**  
+R: Aponte `SECOND_BRAIN_PATH` pro workspace que você já tem (ex: `~/openclaw-workspace`) — o `/cerebro` detecta os arquivos e usa como contexto. Um cuidado: o workspace OpenClaw tem `SOUL.md`, `AGENTS.md`, `TOOLS.md` etc que descrevem o **agente autônomo**, não você. No seu `CLAUDE.md` local, deixe explícito "Você NÃO é a Amora — SOUL/AGENTS são do agente no VPS. Aqui você é o Claude Code operando o clone local." Assim o Claude não confunde identidade quando lê os dois. O comando `cp -rn` no passo 2 não sobrescreve nada que já existe, então é seguro rodar por cima.
 
 ---
 
