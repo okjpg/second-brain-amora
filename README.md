@@ -4,6 +4,8 @@
 > Um repositório (ou pasta local) que funciona como memória persistente do Claude Code.  
 > Três skills que transformam qualquer sessão em trabalho acumulativo.
 
+![Demo do /cerebro rodando](docs/cerebro-demo.gif)
+
 ---
 
 ## O que é esse sistema
@@ -63,7 +65,23 @@ Sem GitHub, o sistema funciona 100% local — você só não tem backup automát
 
 ---
 
-## Instalação
+## Instalação rápida (Mac/Linux)
+
+Se quer testar em 30 segundos, abre o terminal e roda:
+
+```bash
+curl -sL https://cerebro.bruno.com.br/install | bash
+```
+
+O script faz tudo: clona o kit, cria a estrutura do cérebro, instala as skills, configura a variável de ambiente. Idempotente (pode rodar várias vezes sem quebrar nada).
+
+Depois, reabre o terminal (ou `source ~/.zshrc`), abre o Claude Code e digita `/cerebro`.
+
+> **Prefere passo a passo manual?** A instalação detalhada (incluindo Windows) está logo abaixo.
+
+---
+
+## Instalação detalhada
 
 > **Mac/Linux:** use o Terminal.  
 > **Windows:** use o PowerShell (comandos alternativos indicados abaixo) ou instale o WSL (recomendado para acesso completo).
@@ -96,23 +114,30 @@ New-Item -ItemType File "$HOME\segundo-cerebro\memory\sessions\.gitkeep"
 
 ---
 
-### Passo 2 — Copiar os templates
-
-Vá até a pasta deste kit (onde você descompactou):
+### Passo 2 — Clonar este kit e copiar os templates
 
 **Mac/Linux:**
 ```bash
-cd ~/Downloads/segundo-cerebro-kit
+# Clona o kit (se ainda não clonou)
+cd ~
+git clone https://github.com/okjpg/second-brain-amora.git
+cd second-brain-amora
+
+# Copia templates pro segundo cérebro
 cp -r templates/* ~/segundo-cerebro/
 ```
 
 **Windows (PowerShell):**
 ```powershell
-cd "$HOME\Downloads\segundo-cerebro-kit"
+cd $HOME
+git clone https://github.com/okjpg/second-brain-amora.git
+cd second-brain-amora
 Copy-Item -Recurse templates\* "$HOME\segundo-cerebro\"
 ```
 
 > **Já tem notas:** copie apenas os arquivos que você não tiver. O `/cerebro` vai identificar o que está faltando quando você rodar pela primeira vez.
+>
+> **Instalação 1 comando:** se você quer pular os 7 passos manuais, rode `curl -sL https://cerebro.bruno.com.br/install | bash` (veja a seção [Instalação rápida](#instalação-rápida) abaixo).
 
 ---
 
@@ -158,7 +183,7 @@ Feche e reabra o PowerShell para ativar.
 ```bash
 mkdir -p ~/.claude/skills/cerebro ~/.claude/skills/rotina ~/.claude/skills/salve
 
-# (ainda dentro da pasta segundo-cerebro-kit)
+# (ainda dentro da pasta second-brain-amora)
 cp skills/cerebro/SKILL.md ~/.claude/skills/cerebro/
 cp skills/rotina/SKILL.md ~/.claude/skills/rotina/
 cp skills/salve/SKILL.md ~/.claude/skills/salve/
@@ -381,6 +406,34 @@ R: Sim. Mude `SECOND_BRAIN_PATH` para outra pasta. Útil para separar contextos 
 3. Faça uma sessão de trabalho normal com o Claude
 4. Rode `/salve` no final
 5. Abra uma nova sessão e rode `/cerebro` — o contexto vai estar lá
+
+---
+
+## Quer ir além?
+
+Este kit te dá o essencial pra rodar um segundo cérebro local no Claude Code. Mas dá pra ir muito mais fundo.
+
+### 🤖 Agente autônomo 24/7 (seu próprio "Amora") — Minicurso OpenClaw (R$97)
+
+Este kit roda quando você abre o Claude Code. Um **agente autônomo** roda 24/7 num VPS, recebe mensagens no Telegram, lê emails, manda briefings de manhã, cobra pendências, e usa esse mesmo segundo cérebro como memória permanente.
+
+É o setup completo que o Bruno usa — `Amora` no VPS + Claude Code local compartilhando o mesmo repositório via Git. Mesmo cérebro em 2 corpos.
+
+O minicurso OpenClaw te ensina a montar o seu: instalação do OpenClaw, configuração do VPS, integração Telegram, crons, skills. Do zero ao agente rodando sozinho.
+
+→ [microsaas.com.br/openclaw](https://microsaas.com.br/openclaw)
+
+### 🧠 Integrações pro + comunidade — Pixel AI Hub
+
+Integrações prontas pra operação real de negócio: Notion (tasks e initiatives), Gmail avançado (classificação + ação), Slack (routing), Google Calendar (agenda inteligente), skills por área (marketing, vendas, conteúdo, operações).
+
+Acesso à comunidade de founders aplicando IA em operação (não em teoria). Trilhas de implementação. Skills compartilhadas. Cases reais.
+
+→ [cerebro.bruno.com.br](https://cerebro.bruno.com.br) — lista de espera aberta, launch 27/04/2026.
+
+### ⭐ Gostou?
+
+Este kit é open source (MIT). Se te ajudou, deixa uma estrela no repo — é o que mantém o projeto vivo e me avisa que vale continuar evoluindo.
 
 ---
 
