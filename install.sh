@@ -82,17 +82,20 @@ mkdir -p "$BRAIN_PATH/skills"
 touch "$BRAIN_PATH/memory/sessions/.gitkeep"
 ok "pastas criadas"
 
-# Copia templates (não sobrescreve existentes)
-for src in "$KIT_DIR/templates"/*; do
-  name=$(basename "$src")
-  dest="$BRAIN_PATH/$name"
+# Copia templates preservando hierarquia, sem sobrescrever arquivos existentes
+# (itera arquivo por arquivo — `cp -rn` pula pastas inteiras se o topo existir,
+#  não copiando arquivos filhos dentro, o que deixava o cérebro vazio)
+while IFS= read -r src; do
+  rel="${src#$KIT_DIR/templates/}"
+  dest="$BRAIN_PATH/$rel"
   if [ ! -e "$dest" ]; then
-    cp -r "$src" "$dest"
-    ok "template: $name"
+    mkdir -p "$(dirname "$dest")"
+    cp "$src" "$dest"
+    ok "template: $rel"
   else
-    skip "template já existe: $name"
+    skip "template já existe: $rel"
   fi
-done
+done < <(find "$KIT_DIR/templates" -type f)
 printf "\n"
 
 # ─── [4/5] Skills ────────────────────────────────────────────────────────────
@@ -130,4 +133,4 @@ printf "  1. Reabra o terminal ou rode: ${BLUE}source %s${NC}\n" "$SHELL_RC"
 printf "  2. Edite ${BLUE}%s/CLAUDE.md${NC} com seus dados\n" "$BRAIN_PATH"
 printf "  3. Abra o Claude Code e digite: ${BLUE}/cerebro${NC}\n\n"
 printf "Docs: ${BLUE}https://github.com/okjpg/second-brain-amora${NC}\n"
-printf "Comunidade: ${BLUE}https://cerebro.bruno.com.br${NC}\n\n"
+printf "Comunidade: ${BLUE}https://cerebro.microsaas.com.br${NC}\n\n"
